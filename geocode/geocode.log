@@ -1,0 +1,34 @@
+22:51:38,245  INFO GeocodeControllerTest:48 - Starting GeocodeControllerTest on Manish-JA with PID 13340 (started by jangid_m in C:\Users\jangid_m\personal\example\geocode)
+22:51:38,247 DEBUG GeocodeControllerTest:51 - Running with Spring Boot v2.0.0.BUILD-SNAPSHOT, Spring v5.0.0.BUILD-SNAPSHOT
+22:51:38,248  INFO GeocodeControllerTest:636 - No active profile set, falling back to default profiles: default
+22:51:38,629 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+22:51:41,505  INFO GeocodeApplication:32 - Initializing GoogleLatLang bean
+22:51:41,508  INFO GeoControllerService:32 - GeoControllerService: initialization: getting shopdetails data from disk
+22:51:41,509  INFO GeoControllerService:36 - Not able to load shop detail list from disk
+22:51:42,215  INFO GeocodeControllerTest:57 - Started GeocodeControllerTest in 4.587 seconds (JVM running for 5.51)
+22:51:42,540  INFO GeocodeApplication:46 - Input value === ShopDetail [name=Delhi-shop, shopAddress=ShopAddress [number=44, postCode=110092]]
+22:51:42,540  INFO GeoControllerService:44 - ShopName == Delhi-shopShop Number == 44 postalcode == 110092
+22:51:44,147  INFO GeocodeApplication:46 - New Delhi, Delhi 110092, India  latitude == 28.6362211  longitude == 77.2922332
+22:51:44,147  INFO GeoControllerService:54 - Following shop added into list : ShopDetails [shopName=Delhi-shop, shopNumber=44, postalCode=110092, longitude=77.2922332, latitude=28.6362211]
+22:51:44,148  INFO GeoControllerService:61 - GeoControllerService: Storing shopdetails data into disk
+22:51:44,300  INFO GeocodeApplication:65 - Input value === CustomerPosition [latitiude=18.76, longitude=74.77]
+22:51:44,300 DEBUG GeoControllerService:79 - ShopDetails [shopName=Delhi-shop, shopNumber=44, postalCode=110092, longitude=77.2922332, latitude=28.6362211] dist ==103.90140353126743smallest distence == 2.147483647E9curr index == 0
+22:51:44,475  INFO GeocodeApplicationTests:48 - Starting GeocodeApplicationTests on Manish-JA with PID 13340 (started by jangid_m in C:\Users\jangid_m\personal\example\geocode)
+22:51:44,477 DEBUG GeocodeApplicationTests:51 - Running with Spring Boot v2.0.0.BUILD-SNAPSHOT, Spring v5.0.0.BUILD-SNAPSHOT
+22:51:44,478  INFO GeocodeApplicationTests:636 - No active profile set, falling back to default profiles: default
+22:51:45,041  INFO GeocodeApplication:32 - Initializing GoogleLatLang bean
+22:51:45,043  INFO GeoControllerService:32 - GeoControllerService: initialization: getting shopdetails data from disk
+22:51:45,607  INFO GeocodeApplicationTests:57 - Started GeocodeApplicationTests in 1.232 seconds (JVM running for 8.902)
+22:51:45,682  INFO GeocodeApplicationTests:48 - Starting GeocodeApplicationTests on Manish-JA with PID 13340 (started by jangid_m in C:\Users\jangid_m\personal\example\geocode)
+22:51:45,682 DEBUG GeocodeApplicationTests:51 - Running with Spring Boot v2.0.0.BUILD-SNAPSHOT, Spring v5.0.0.BUILD-SNAPSHOT
+22:51:45,683  INFO GeocodeApplicationTests:636 - No active profile set, falling back to default profiles: default
+22:51:46,731  INFO GeocodeApplication:32 - Initializing GoogleLatLang bean
+22:51:46,741  INFO GeoControllerService:32 - GeoControllerService: initialization: getting shopdetails data from disk
+22:51:47,334  INFO GeocodeApplicationTests:57 - Started GeocodeApplicationTests in 1.702 seconds (JVM running for 10.629)
+22:52:08,117  INFO GeocodeApplication:48 - Starting GeocodeApplication on Manish-JA with PID 6824 (C:\Users\jangid_m\personal\example\geocode\target\classes started by jangid_m in C:\Users\jangid_m\personal\example\geocode)
+22:52:08,121 DEBUG GeocodeApplication:51 - Running with Spring Boot v2.0.0.BUILD-SNAPSHOT, Spring v5.0.0.BUILD-SNAPSHOT
+22:52:08,122  INFO GeocodeApplication:636 - No active profile set, falling back to default profiles: default
+22:52:08,561 DEBUG logging:19 - Logging Provider: org.jboss.logging.Log4jLoggerProvider
+22:52:10,853  INFO GeocodeApplication:32 - Initializing GoogleLatLang bean
+22:52:10,863  INFO GeoControllerService:32 - GeoControllerService: initialization: getting shopdetails data from disk
+22:52:11,761  INFO GeocodeApplication:57 - Started GeocodeApplication in 4.23 seconds (JVM running for 4.648)
