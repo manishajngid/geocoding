@@ -9,11 +9,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * JSON annotated POJO to capture shop details data Used in /addshopdetails
+ * service
+ * 
  * @author jangid_m
- *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ShopDetailReq implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	@JsonProperty("shopName")
 	private String name;
 	@JsonProperty("shopAddress")

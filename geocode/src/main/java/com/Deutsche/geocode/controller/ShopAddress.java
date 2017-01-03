@@ -9,17 +9,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * JSON annotated POJO to capture ShopAddress
+ * 
  * @author jangid_m
  *
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ShopAddress implements Serializable {
 
-@JsonProperty("number")
+	/**
+		 * 
+		 */
+	private static final long serialVersionUID = 1L;
+
+	@JsonProperty("number")
 
 	private int number;
 
-@JsonProperty("postCode")
+	@JsonProperty("postCode")
 
 	private int postCode;
 

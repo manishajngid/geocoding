@@ -6,10 +6,12 @@ package com.Deutsche.geocode.model;
 import java.io.Serializable;
 
 /**
+ * Model for shop details 
  * @author jangid_m
- *
  */
 public class ShopDetails implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 private String shopName;
 private int shopNumber ;
 private int postalCode;

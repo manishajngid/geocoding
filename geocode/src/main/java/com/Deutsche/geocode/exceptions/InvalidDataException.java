@@ -1,14 +1,17 @@
-/**
- * 
- */
+
 package com.Deutsche.geocode.exceptions;
 
 /**
+ * Exception to handle invalid data
+ * 
  * @author jangid_m
  *
  */
 public class InvalidDataException extends RuntimeException {
-   private String errorMessage;
+
+	private static final long serialVersionUID = 1L;
+	private String errorMessage;
+
 	public InvalidDataException() {
 		super();
 	}
@@ -27,6 +30,5 @@ public class InvalidDataException extends RuntimeException {
 	public String getMessage() {
 		return errorMessage;
 	}
-	
 
 }
