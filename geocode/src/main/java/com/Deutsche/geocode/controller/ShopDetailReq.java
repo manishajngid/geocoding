@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * JSON annotated POJO to capture shop details data Used in /addshopdetails
  * service
  * 
- * @author jangid_m
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ShopDetailReq implements Serializable {
@@ -37,7 +36,8 @@ public class ShopDetailReq implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ShopDetail [name=" + name + ", shopAddress=" + shopAddress + "]";
+		return "ShopDetail [name=" + name + ", shopAddress=" + shopAddress
+				+ "]";
 	}
 
 	public void setShopAddress(ShopAddress shopAddress) {

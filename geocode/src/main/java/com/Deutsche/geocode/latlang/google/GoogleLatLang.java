@@ -21,11 +21,12 @@ import com.google.maps.model.LatLng;
  * postal code
  * 
  * @author jangid_m
- *
+ * 
  */
 @Component("googleLatLang")
 public class GoogleLatLang {
-	private transient static final Logger LOG = Logger.getLogger(GeocodeApplication.class);
+	private transient static final Logger LOG = Logger
+			.getLogger(GeocodeApplication.class);
 	GeoApiContext context = null;
 	private String serviceName = "GoogleLatLang";
 	@Value("${google.api.key}")
@@ -51,7 +52,8 @@ public class GoogleLatLang {
 	 */
 	public double[] getResult(int postCode) throws Exception {
 		double[] latlang = new double[2];
-		GeocodingResult[] results = GeocodingApi.geocode(context, String.valueOf(postCode)).await();
+		GeocodingResult[] results = GeocodingApi.geocode(context,
+				String.valueOf(postCode)).await();
 		if (null != results && results.length != 0) {
 			LatLng location = results[0].geometry.location;
 			latlang[0] = location.lat;
@@ -59,7 +61,8 @@ public class GoogleLatLang {
 		} else {
 			new ServiceInvocationException(serviceName);
 		}
-		LOG.info(results[0].formattedAddress + "  latitude == " + latlang[0] + "  longitude == " + latlang[1]);
+		LOG.info(results[0].formattedAddress + "  latitude == " + latlang[0]
+				+ "  longitude == " + latlang[1]);
 		return latlang;
 	}
 

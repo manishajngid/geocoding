@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-	
+
 /**
  * JSON annotated POJO to capture customer position data Used in /getNearestShop
  * service
  * 
  * @author jangid_m
- *
+ * 
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomerPositionReq implements Serializable {
@@ -41,7 +41,8 @@ public class CustomerPositionReq implements Serializable {
 
 	@Override
 	public String toString() {
-		return "CustomerPosition [latitiude=" + latitiude + ", longitude=" + longitude + "]";
+		return "CustomerPosition [latitiude=" + latitiude + ", longitude="
+				+ longitude + "]";
 	}
 
 }

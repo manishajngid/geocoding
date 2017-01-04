@@ -12,7 +12,7 @@ import com.Deutsche.geocode.model.ShopDetails;
  * Geo controller service interface
  * 
  * @author jangid_m
- *
+ * 
  */
 public interface IGeoControllerService {
 	/**
@@ -30,8 +30,9 @@ public interface IGeoControllerService {
 
 	/**
 	 * takes coordinates in form of latitude and longitude and returns nearest
-	 * shop with respect to given input. throws NoRegisteredShopException if shop
-	 * list is empty
+	 * shop with respect to given input. throws NoRegisteredShopException if
+	 * shop list is empty finds out distance from customer position to each of
+	 * registered shop position and returns shop details with minimum distance
 	 * 
 	 * @param customerPosition
 	 * @return
@@ -43,5 +44,5 @@ public interface IGeoControllerService {
 	 * 
 	 * @return
 	 */
-	public List<ShopDetails> getallShopData();
+	public List<ShopDetails> getAllShopData();
 }

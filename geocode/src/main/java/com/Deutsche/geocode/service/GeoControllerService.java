@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,25 +21,23 @@ import com.Deutsche.geocode.latlang.ILatLang;
 import com.Deutsche.geocode.model.ShopDetails;
 
 /**
- * Geo controller Service cLASS
+ * Geo controller Service Class
  * 
  * @author jangid_m
- *
+ * 
  */
 @Service("geoControllerService")
 public class GeoControllerService implements IGeoControllerService {
-	private transient static final Logger LOG = Logger.getLogger(GeoControllerService.class);
+	private transient static final Logger LOG = Logger
+			.getLogger(GeoControllerService.class);
 
 	@Autowired
 	@Qualifier("latlang")
 	ILatLang latlang;
-	
-	
 
 	public GeoControllerService(ILatLang latlang) {
 		super();
 		this.latlang = latlang;
-		this.shopDetailsList = shopDetailsList;
 	}
 
 	/**
@@ -56,8 +53,10 @@ public class GeoControllerService implements IGeoControllerService {
 	@PostConstruct
 	private void getDataFromDisk() {
 		LOG.info("GeoControllerService: initialization: getting shopdetails data from disk");
-		try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("./shopList"))) {
-			shopDetailsList = (List<ShopDetails>) objectInputStream.readObject();
+		try (ObjectInputStream objectInputStream = new ObjectInputStream(
+				new FileInputStream("./shopList"))) {
+			shopDetailsList = (List<ShopDetails>) objectInputStream
+					.readObject();
 		} catch (IOException | ClassNotFoundException e) {
 			LOG.info("Not able to load shop detail list from disk");
 		}
@@ -72,14 +71,17 @@ public class GeoControllerService implements IGeoControllerService {
 	 */
 	public boolean addShopDetail(String shopName, int shopNum, int postCode) {
 		boolean status = true;
-		LOG.info("ShopName == " + shopName + "Shop Number == " + shopNum + " postalcode == " + postCode);
+		LOG.info("ShopName == " + shopName + "Shop Number == " + shopNum
+				+ " postalcode == " + postCode);
 		ShopDetails shopDetails = new ShopDetails();
 		shopDetails.setShopName(shopName);
 		shopDetails.setShopNumber(shopNum);
 		shopDetails.setPostalCode(postCode);
+		// no need to give call to geocode API if data is already available
 		if (!shopDetailsList.contains(shopDetails)) {
 			LOG.info("Getting latland data from google");
-			double[] latlangFromPostCode = latlang.getLatlangFromPostCode(postCode,status);
+			double[] latlangFromPostCode = latlang.getLatlangFromPostCode(
+					postCode, status);
 			shopDetails.setLatitude(latlangFromPostCode[0]);
 			shopDetails.setLongitude(latlangFromPostCode[1]);
 			shopDetailsList.add(shopDetails);
@@ -91,13 +93,12 @@ public class GeoControllerService implements IGeoControllerService {
 
 	/**
 	 * Serializes shop details list
-	 * 
-	 * @param shopDetailsList2
 	 */
 
 	private void storeIntoDisk() {
 		LOG.info("GeoControllerService: Storing shopdetails data into disk");
-		try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("./shopList"))) {
+		try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(
+				new FileOutputStream("./shopList"))) {
 			;
 			objectOutputStream.writeObject(shopDetailsList);
 		} catch (IOException e) {
@@ -111,7 +112,7 @@ public class GeoControllerService implements IGeoControllerService {
 	 * @see com.Deutsche.geocode.service.IGeoControllerService#getallShopData()
 	 */
 	@Override
-	public List<ShopDetails> getallShopData() {
+	public List<ShopDetails> getAllShopData() {
 		return shopDetailsList;
 	}
 
@@ -131,12 +132,15 @@ public class GeoControllerService implements IGeoControllerService {
 		int currIndex = 0;
 		double smallestDistence = Integer.MAX_VALUE;
 		int smallestindex = 0;
+		// formula (x1 -x2)^2 + (y1-y2)^2
 		for (ShopDetails shopDetails : shopDetailsList) {
-			double delx = shopDetails.getLatitude() - customerPosition.getLatitiude();
-			double dely = shopDetails.getLongitude() - customerPosition.getLongitude();
+			double delx = shopDetails.getLatitude()
+					- customerPosition.getLatitiude();
+			double dely = shopDetails.getLongitude()
+					- customerPosition.getLongitude();
 			double dist = delx * delx + dely * dely;
-			LOG.debug(shopDetails + " dist ==" + dist + "smallest distence == " + smallestDistence + "curr index == "
-					+ currIndex);
+			LOG.debug(shopDetails + " dist ==" + dist + "smallest distence == "
+					+ smallestDistence + "curr index == " + currIndex);
 			if (dist < smallestDistence) {
 				smallestDistence = dist;
 				smallestindex = currIndex;

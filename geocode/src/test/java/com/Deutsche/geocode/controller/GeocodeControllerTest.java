@@ -15,8 +15,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.Deutsche.geocode.exceptions.InvalidDataException;
-
+/**
+ * Geocode controller test class
+ * 
+ * @author jangid_m
+ * 
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class GeocodeControllerTest {
@@ -28,7 +32,8 @@ public class GeocodeControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.mockMvc = MockMvcBuilders.standaloneSetup(geocodeController).build();
+		this.mockMvc = MockMvcBuilders.standaloneSetup(geocodeController)
+				.build();
 	}
 
 	@After
@@ -37,9 +42,13 @@ public class GeocodeControllerTest {
 
 	@Test
 	public void testAddShopData() throws Exception {
-		this.mockMvc.perform(
-				MockMvcRequestBuilders.post(BASE_URL + "/addShopDetail").contentType(MediaType.APPLICATION_JSON)
-						.content(getShopDataAsJsonString()).accept(MediaType.APPLICATION_JSON))
+		this.mockMvc
+				.perform(
+						MockMvcRequestBuilders
+								.post(BASE_URL + "/addShopDetail")
+								.contentType(MediaType.APPLICATION_JSON)
+								.content(getShopDataAsJsonString())
+								.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).
 
 				andExpect(status().isOk());
@@ -47,29 +56,41 @@ public class GeocodeControllerTest {
 
 	@Test
 	public void testAddShopDataInvalid() throws Exception {
-		this.mockMvc.perform(
-				MockMvcRequestBuilders.post(BASE_URL + "/addShopDetail").contentType(MediaType.APPLICATION_JSON)
-				.content(getShopDataAsJsonStringInvalid()).accept(MediaType.APPLICATION_JSON))
-		.andDo(print()).
-		
-		andExpect(status().isBadRequest());
+		this.mockMvc
+				.perform(
+						MockMvcRequestBuilders
+								.post(BASE_URL + "/addShopDetail")
+								.contentType(MediaType.APPLICATION_JSON)
+								.content(getShopDataAsJsonStringInvalid())
+								.accept(MediaType.APPLICATION_JSON))
+				.andDo(print()).
+
+				andExpect(status().isBadRequest());
 	}
+
 	@Test
 	public void testGetNearestShopInvalid() throws Exception {
-		this.mockMvc.perform(
-				MockMvcRequestBuilders.post(BASE_URL + "/getNearestShop").contentType(MediaType.APPLICATION_JSON)
-						.content(getCustomerDataAsJsonStringInvalid()).accept(MediaType.APPLICATION_JSON))
+		this.mockMvc
+				.perform(
+						MockMvcRequestBuilders
+								.post(BASE_URL + "/getNearestShop")
+								.contentType(MediaType.APPLICATION_JSON)
+								.content(getCustomerDataAsJsonStringInvalid())
+								.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isBadRequest());
 	}
 
 	@Test
 	public void testGetNearestShop() throws Exception {
-		this.mockMvc.perform(
-				MockMvcRequestBuilders.post(BASE_URL + "/getNearestShop").contentType(MediaType.APPLICATION_JSON)
-						.content(getCustomerDataAsJsonString()).accept(MediaType.APPLICATION_JSON))
+		this.mockMvc
+				.perform(
+						MockMvcRequestBuilders
+								.post(BASE_URL + "/getNearestShop")
+								.contentType(MediaType.APPLICATION_JSON)
+								.content(getCustomerDataAsJsonString())
+								.accept(MediaType.APPLICATION_JSON))
 				.andDo(print()).andExpect(status().isOk());
 	}
-
 
 	private static String getShopDataAsJsonString() {
 		return "{\"shopName\":\"Delhi-shop\", \"shopAddress\":{\"number\":44,\"postCode\":	110092 }}";

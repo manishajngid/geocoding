@@ -7,7 +7,7 @@ package com.Deutsche.geocode.exceptions;
  * Exception to handle any issues occurred during third external service call
  * 
  * @author jangid_m
- *
+ * 
  */
 public class ServiceInvocationException extends RuntimeException {
 
@@ -21,10 +21,12 @@ public class ServiceInvocationException extends RuntimeException {
 
 	@Override
 	public String toString() {
-		return "ServiceInvocationException [serviceName=" + serviceName + ", toString()=" + super.toString() + "]";
+		return "ServiceInvocationException [serviceName=" + serviceName
+				+ ", toString()=" + super.toString() + "]";
 	}
 
-	public String getMsg(){
-		return "Service : " + serviceName +" Unable to connect to google server. Try after some time " ;
+	public String getMsg() {
+		return "Service : " + serviceName
+				+ " Unable to connect to google server. Try after some time ";
 	}
 }

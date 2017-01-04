@@ -1,11 +1,10 @@
-
 package com.Deutsche.geocode.exceptions;
 
 /**
  * Exception to handle invalid data
  * 
  * @author jangid_m
- *
+ * 
  */
 public class InvalidDataException extends RuntimeException {
 

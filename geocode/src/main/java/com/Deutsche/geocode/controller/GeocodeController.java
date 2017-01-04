@@ -30,7 +30,8 @@ import com.Deutsche.geocode.service.IGeoControllerService;
 @RestController
 @RequestMapping("/geocode")
 public class GeocodeController {
-	private transient static final Logger LOG = Logger.getLogger(GeocodeApplication.class);
+	private transient static final Logger LOG = Logger
+			.getLogger(GeocodeApplication.class);
 
 	@Autowired
 	private IGeoControllerService geoControllerService;
@@ -45,7 +46,7 @@ public class GeocodeController {
 	@ResponseBody
 	public List<ShopDetails> index() {
 		LOG.debug("Returning all shop data ");
-		return geoControllerService.getallShopData();
+		return geoControllerService.getAllShopData();
 	}
 
 	/**
@@ -54,26 +55,30 @@ public class GeocodeController {
 	 * @path /geocode/addShopDetail
 	 * @requesttype post input json for reference {"shopName":"Delhi-shop",
 	 *              "shopAddress":{ "number":44,"postCode": 110092 }} returns
-	 *              status message/error message
+	 *              status message or error message in case of errors.
 	 * @return
 	 */
 	@RequestMapping(value = "/addShopDetail", method = { RequestMethod.POST }, consumes = {
-			MediaType.APPLICATION_FORM_URLENCODED_VALUE, MediaType.APPLICATION_JSON_VALUE,
-			MediaType.ALL_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
+			MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+			MediaType.APPLICATION_JSON_VALUE, MediaType.ALL_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public ResponseEntity<ShopDetailRes> addShopData(@RequestBody ShopDetailReq shopDetailreq) {
+	public ResponseEntity<ShopDetailRes> addShopData(
+			@RequestBody ShopDetailReq shopDetailreq) {
 		LOG.info("Input value === " + shopDetailreq);
 		validateShopDetailInput(shopDetailreq);
-		boolean addShopDetail = geoControllerService.addShopDetail(shopDetailreq.getName(),
-				shopDetailreq.getShopAddress().getNumber(), shopDetailreq.getShopAddress().getPostCode());
+		boolean addShopDetail = geoControllerService.addShopDetail(
+				shopDetailreq.getName(), shopDetailreq.getShopAddress()
+						.getNumber(), shopDetailreq.getShopAddress()
+						.getPostCode());
 		String msg = null;
 		if (addShopDetail) {
 			msg = "Shop details added successfgully";
 		} else {
 			msg = "Shop details not added. Please try again ";
 		}
-		return new ResponseEntity<ShopDetailRes>(new ShopDetailRes(msg), HttpStatus.OK);
+		return new ResponseEntity<ShopDetailRes>(new ShopDetailRes(msg),
+				HttpStatus.OK);
 	}
 
 	/**
@@ -82,18 +87,19 @@ public class GeocodeController {
 	 * @path /geocode/getNearestShop
 	 * @requesttype post input json for
 	 *              reference{"longitude":74.77,"latitude":18.76} returns status
-	 *              returns empty shopDetails object if no shop is registered
-	 *              yet.
+	 *              returns nearest shopDetails object or error message if no
+	 *              shop is registered yet.
 	 * @return
 	 */
-	@RequestMapping(value = "/getNearestShop", method = { RequestMethod.POST }, consumes = {
-			MediaType.APPLICATION_JSON_VALUE, }, produces = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping(value = "/getNearestShop", method = { RequestMethod.POST }, consumes = { MediaType.APPLICATION_JSON_VALUE, }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public ResponseEntity<ShopDetails> getNearestShop(@RequestBody CustomerPositionReq customerPosition) {
+	public ResponseEntity<ShopDetails> getNearestShop(
+			@RequestBody CustomerPositionReq customerPosition) {
 		LOG.info("Input value === " + customerPosition);
 		validateCustomerData(customerPosition);
-		ShopDetails nearestShop = geoControllerService.getNearestShop(customerPosition);
+		ShopDetails nearestShop = geoControllerService
+				.getNearestShop(customerPosition);
 		return new ResponseEntity<ShopDetails>(nearestShop, HttpStatus.OK);
 	}
 
@@ -104,7 +110,8 @@ public class GeocodeController {
 	 */
 	private void validateShopDetailInput(ShopDetailReq shopDetailreq) {
 		String errorMsg = "";
-		if (shopDetailreq.getName() == null || shopDetailreq.getName().length() == 0) {
+		if (shopDetailreq.getName() == null
+				|| shopDetailreq.getName().length() == 0) {
 			errorMsg = "::::: Invalid input ::::: Shop name is either null or empty";
 		}
 		if (shopDetailreq.getShopAddress() == null) {
@@ -116,8 +123,7 @@ public class GeocodeController {
 						: " And Shop number is not provided";
 			}
 			if (shopDetailreq.getShopAddress().getPostCode() == 0) {
-				errorMsg += errorMsg.length() == 0
-						? "::::: Invalid input ::::: Shop postalcode is not provided or invalid"
+				errorMsg += errorMsg.length() == 0 ? "::::: Invalid input ::::: Shop postalcode is not provided or invalid"
 						: " And Shop postalcode is not provided or invalid";
 			}
 		}
@@ -160,23 +166,31 @@ public class GeocodeController {
 
 	@ResponseStatus(HttpStatus.REQUEST_TIMEOUT)
 	@ExceptionHandler(ServiceInvocationException.class)
-	public ShopDetailRes error(HttpServletRequest req, ServiceInvocationException ex) {
+	public ShopDetailRes error(HttpServletRequest req,
+			ServiceInvocationException ex) {
 
 		return new ShopDetailRes(ex.getMessage());
 	}
 
-	
-
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(NoRegisteredShopException.class)
-	public ResponseEntity<ShopDetails> error(HttpServletRequest req, NoRegisteredShopException ex) {
+	public ResponseEntity<ShopDetails> error(HttpServletRequest req,
+			NoRegisteredShopException ex) {
 
 		return new ResponseEntity<ShopDetails>(HttpStatus.NOT_FOUND);
 	}
 
+	/**
+	 * to capture any other exception
+	 * 
+	 * @param req
+	 * @param ex
+	 * @return
+	 */
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(Exception.class)
-	public ShopDetailRes anyErrorForGettingNearestShopSetail(HttpServletRequest req, Exception ex) {
+	public ShopDetailRes anyErrorForGettingNearestShopSetail(
+			HttpServletRequest req, Exception ex) {
 
 		return new ShopDetailRes(ex.getMessage());
 	}

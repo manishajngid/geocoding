@@ -13,7 +13,6 @@ public class ShopDetailRes {
 	@JsonProperty("Message")
 	private String msg;
 
-	
 	public ShopDetailRes(String msg) {
 		super();
 		this.msg = msg;
@@ -24,5 +23,4 @@ public class ShopDetailRes {
 		return "ShopDetailRes [msg=" + msg + "]";
 	}
 
-	
 }
