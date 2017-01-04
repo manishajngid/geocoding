@@ -25,6 +25,21 @@ public class LatLang implements ILatLang {
 	@Autowired
 	@Qualifier("googleLatLang")
 	private GoogleLatLang googleLatLang;
+	
+	
+
+	public LatLang() {
+		super();
+	}
+
+
+
+	public LatLang(GoogleLatLang googleLatLang) {
+		super();
+		this.googleLatLang = googleLatLang;
+	}
+
+
 
 	/* (non-Javadoc)
 	 * @see com.Deutsche.geocode.latlang.ILatLang#getLatlangFromPostCode(int)
