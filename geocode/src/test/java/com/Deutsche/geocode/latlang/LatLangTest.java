@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.Deutsche.geocode.exceptions.ServiceInvocationException;
@@ -20,7 +21,7 @@ import com.Deutsche.geocode.latlang.google.GoogleLatLang;
  * @author jangid_m
  *
  */
-@Component("latlang")
+@Component("latlangtest")
 public class LatLangTest implements ILatLang {
 	private String serviceName = "TestService";
 	
@@ -37,7 +38,7 @@ public class LatLangTest implements ILatLang {
 	/* (non-Javadoc)
 	 * @see com.Deutsche.geocode.latlang.ILatLang#getLatlangFromPostCode(int)
 	 */
-	public double[] getLatlangFromPostCode(int postCode) {
+	public double[] getLatlangFromPostCode(int postCode, Boolean status) {
 		 double[] latlang;
 		 System.out.println("in test returning mock data");
 		 try {

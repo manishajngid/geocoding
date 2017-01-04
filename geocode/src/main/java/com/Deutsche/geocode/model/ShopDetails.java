@@ -15,7 +15,21 @@ public class ShopDetails implements Serializable {
 private String shopName;
 private int shopNumber ;
 private int postalCode;
+private double longitude;
+private double latitude ;
 
+
+public ShopDetails() {
+	super();
+}
+public ShopDetails(String shopName, int shopNumber, int postalCode, double longitude, double latitude) {
+	super();
+	this.shopName = shopName;
+	this.shopNumber = shopNumber;
+	this.postalCode = postalCode;
+	this.longitude = longitude;
+	this.latitude = latitude;
+}
 public void setShopName(String shopName) {
 	this.shopName = shopName;
 }
@@ -24,6 +38,31 @@ public int getShopNumber() {
 }
 public void setShopNumber(int shopNumber) {
 	this.shopNumber = shopNumber;
+}
+
+public int getPostalCode() {
+	return postalCode;
+}
+public void setPostalCode(int postalCode) {
+	this.postalCode = postalCode;
+}
+public double getLongitude() {
+	return longitude;
+}
+public void setLongitude(double longitude) {
+	this.longitude = longitude;
+}
+public double getLatitude() {
+	return latitude;
+}
+public void setLatitude(double latitude) {
+	this.latitude = latitude;
+}
+
+@Override
+public String toString() {
+	return "ShopDetails [shopName=" + shopName + ", shopNumber=" + shopNumber + ", postalCode=" + postalCode
+			+ ", longitude=" + longitude + ", latitude=" + latitude + "]";
 }
 @Override
 public int hashCode() {
@@ -53,31 +92,5 @@ public boolean equals(Object obj) {
 	if (shopNumber != other.shopNumber)
 		return false;
 	return true;
-}
-public int getPostalCode() {
-	return postalCode;
-}
-public void setPostalCode(int postalCode) {
-	this.postalCode = postalCode;
-}
-public double getLongitude() {
-	return longitude;
-}
-public void setLongitude(double longitude) {
-	this.longitude = longitude;
-}
-public double getLatitude() {
-	return latitude;
-}
-public void setLatitude(double latitude) {
-	this.latitude = latitude;
-}
-private double longitude;
-private double latitude ;
-
-@Override
-public String toString() {
-	return "ShopDetails [shopName=" + shopName + ", shopNumber=" + shopNumber + ", postalCode=" + postalCode
-			+ ", longitude=" + longitude + ", latitude=" + latitude + "]";
 }
 }

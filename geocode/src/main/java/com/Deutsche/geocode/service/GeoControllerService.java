@@ -34,6 +34,14 @@ public class GeoControllerService implements IGeoControllerService {
 	@Autowired
 	@Qualifier("latlang")
 	ILatLang latlang;
+	
+	
+
+	public GeoControllerService(ILatLang latlang) {
+		super();
+		this.latlang = latlang;
+		this.shopDetailsList = shopDetailsList;
+	}
 
 	/**
 	 * in memory list to hold registered shops details
@@ -70,7 +78,8 @@ public class GeoControllerService implements IGeoControllerService {
 		shopDetails.setShopNumber(shopNum);
 		shopDetails.setPostalCode(postCode);
 		if (!shopDetailsList.contains(shopDetails)) {
-			double[] latlangFromPostCode = latlang.getLatlangFromPostCode(postCode);
+			LOG.info("Getting latland data from google");
+			double[] latlangFromPostCode = latlang.getLatlangFromPostCode(postCode,status);
 			shopDetails.setLatitude(latlangFromPostCode[0]);
 			shopDetails.setLongitude(latlangFromPostCode[1]);
 			shopDetailsList.add(shopDetails);

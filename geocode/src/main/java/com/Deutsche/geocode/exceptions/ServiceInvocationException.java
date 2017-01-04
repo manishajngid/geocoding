@@ -24,4 +24,7 @@ public class ServiceInvocationException extends RuntimeException {
 		return "ServiceInvocationException [serviceName=" + serviceName + ", toString()=" + super.toString() + "]";
 	}
 
+	public String getMsg(){
+		return "Service : " + serviceName +" Unable to connect to google server. Try after some time " ;
+	}
 }

@@ -16,6 +16,6 @@ public interface ILatLang {
 	 * @param postCode
 	 * @return double array where 0th element present latitude and 1st element present longitude
 	 */
-	double[] getLatlangFromPostCode(int postCode);
+	double[] getLatlangFromPostCode(int postCode,Boolean status);
 
 }

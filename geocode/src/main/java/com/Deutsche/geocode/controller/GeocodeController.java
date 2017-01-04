@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,7 +62,7 @@ public class GeocodeController {
 			MediaType.ALL_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public ShopDetailRes addShopData(@RequestBody ShopDetailReq shopDetailreq) {
+	public ResponseEntity<ShopDetailRes>  addShopData(@RequestBody ShopDetailReq shopDetailreq) {
 		LOG.info("Input value === " + shopDetailreq);
 		validateShopDetailInput(shopDetailreq);
 		boolean addShopDetail = geoControllerService.addShopDetail(shopDetailreq.getName(),
@@ -72,8 +73,9 @@ public class GeocodeController {
 		} else {
 			msg = "Shop details not added. Please try again ";
 		}
-		return new ShopDetailRes(msg);
+		return new ResponseEntity<ShopDetailRes> (new ShopDetailRes(msg),HttpStatus.OK) ;
 	}
+	
 
 	/**
 	 * Rest call to get nearest shop
@@ -88,11 +90,11 @@ public class GeocodeController {
 			MediaType.APPLICATION_JSON_VALUE, }, produces = { MediaType.APPLICATION_JSON_VALUE })
 	@ResponseStatus(value = HttpStatus.OK)
 	@ResponseBody
-	public ShopDetails getNearestShop(@RequestBody CustomerPositionReq customerPosition) {
+	public  ResponseEntity<ShopDetails> getNearestShop(@RequestBody CustomerPositionReq customerPosition) {
 		LOG.info("Input value === " + customerPosition);
 		validateCustomerData(customerPosition);
 		ShopDetails nearestShop = geoControllerService.getNearestShop(customerPosition);
-		return nearestShop;
+		return new ResponseEntity<ShopDetails> (nearestShop,HttpStatus.OK);
 	}
 
 	/*
@@ -155,14 +157,14 @@ public class GeocodeController {
 	@ExceptionHandler(ServiceInvocationException.class)
 	public ShopDetailRes error(HttpServletRequest req, ServiceInvocationException ex) {
 
-		return new ShopDetailRes(ex.getMessage());
+		return new ShopDetailRes(ex.getMsg());
 	}
 	
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(NoRegisteredShopException.class)
-	public ShopDetails error(HttpServletRequest req, NoRegisteredShopException ex) {
+	public ResponseEntity<ShopDetails> error(HttpServletRequest req, NoRegisteredShopException ex) {
 
-		return new ShopDetails();
+		return new ResponseEntity<ShopDetails>(HttpStatus.NOT_FOUND);
 	}
 
 
