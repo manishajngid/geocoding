@@ -41,6 +41,7 @@ public class GeoControllerServiceTest {
 
 	@After
 	public void tearDown() throws Exception {
+		geoControllerService.getallShopData().clear();
 	}
 
 	@Test
@@ -71,8 +72,8 @@ public class GeoControllerServiceTest {
 		ShopDetails nearestShop = geoControllerService.getNearestShop(customerPositionReq);
 		assertEquals(expected, nearestShop);
 	}
-	
-	@Test(expected=NoRegisteredShopException.class)
+
+	@Test(expected = NoRegisteredShopException.class)
 	public void testGetNearestShopWithEmptyShopList() {
 		CustomerPositionReq customerPositionReq = new CustomerPositionReq();
 		customerPositionReq.setLatitiude(7);
