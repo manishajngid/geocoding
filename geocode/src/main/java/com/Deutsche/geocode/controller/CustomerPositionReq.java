@@ -17,18 +17,18 @@ public class CustomerPositionReq implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@JsonProperty("latitiude")
-	private double latitiude;
+	@JsonProperty("latitude")
+	private double latitude;
 
 	@JsonProperty("longitude")
 	private double longitude;
 
 	public double getLatitiude() {
-		return latitiude;
+		return latitude;
 	}
 
 	public void setLatitiude(double latitiude) {
-		this.latitiude = latitiude;
+		this.latitude = latitiude;
 	}
 
 	public double getLongitude() {
@@ -41,7 +41,7 @@ public class CustomerPositionReq implements Serializable {
 
 	@Override
 	public String toString() {
-		return "CustomerPosition [latitiude=" + latitiude + ", longitude="
+		return "CustomerPosition [latitiude=" + latitude + ", longitude="
 				+ longitude + "]";
 	}
 

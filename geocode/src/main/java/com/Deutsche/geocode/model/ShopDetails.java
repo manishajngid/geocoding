@@ -37,6 +37,10 @@ public class ShopDetails implements Serializable {
 		this.shopName = shopName;
 	}
 
+	public String getShopName() {
+		return shopName;
+	}
+
 	public int getShopNumber() {
 		return shopNumber;
 	}
