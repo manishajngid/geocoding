@@ -13,10 +13,7 @@ public class ShopDetailRes {
 	@JsonProperty("Message")
 	private String msg;
 
-	private String getMsg() {
-		return msg;
-	}
-
+	
 	public ShopDetailRes(String msg) {
 		super();
 		this.msg = msg;
@@ -27,7 +24,5 @@ public class ShopDetailRes {
 		return "ShopDetailRes [msg=" + msg + "]";
 	}
 
-	private void setMsg(String msg) {
-		this.msg = msg;
-	}
+	
 }
