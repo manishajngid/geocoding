@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.Deutsche.geocode.latlang.google.GoogleLatLang;
 
 /**
- * Latland test
+ * Latlang test
  * 
  * @author jangid_m
  * 
